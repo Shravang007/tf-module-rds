@@ -6,7 +6,7 @@ resource "aws_db_subnet_group" "main" {
 }
 
 
-resource "aws_rds_cluster" "default" {
+resource "aws_rds_cluster" "main" {
   cluster_identifier      = "${var.component}-${var.env}"
   engine                  = var.engine
   engine_version          = var.engine_version
