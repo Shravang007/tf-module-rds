@@ -43,6 +43,7 @@ resource "aws_rds_cluster" "main" {
   vpc_security_group_ids  = [aws_security_group.sg.id]
   skip_final_snapshot     = true
 
+  mysql-dev-final-snapshot = "DELETE ME"
 }
 
 resource "aws_rds_cluster_instance" "main" {
