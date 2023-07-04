@@ -22,7 +22,7 @@ resource "aws_rds_cluster" "main" {
 
 resource "aws_rds_cluster_instance" "main" {
   count              = var.instance_count
-  identifier         = "aurora-cluster-demo-${count.index}"
+  identifier         = "${var.component}-${var.env}-instance-${count.index}"
   cluster_identifier = aws_rds_cluster.main.id
   instance_class     = "db.t3.small"
   engine             = var.engine
