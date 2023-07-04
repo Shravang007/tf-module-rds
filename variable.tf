@@ -6,3 +6,4 @@ variable "database_name" {}
 variable "subnet_ids" {}
 variable "tags" {}
 variable "kms_key_arn" {}
+variable "instance_count" {}
