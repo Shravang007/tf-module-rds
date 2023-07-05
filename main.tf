@@ -22,6 +22,16 @@ resource "aws_security_group" "main" {
   }
 }
 
+
+resource "aws_rds_cluster_instance" "main" {
+  count              = var.instance_count
+  identifier         = "${var.component}-${var.env}-instance-${count.index}"
+  cluster_identifier = aws_rds_cluster.main.id
+  instance_class     = var.instance_class
+  engine             = var.engine
+  engine_version     = var.engine_version
+}
+
 resource "aws_db_subnet_group" "main" {
   name       = "${var.component}-${var.env}"
   subnet_ids = var.subnet_ids
@@ -41,16 +51,8 @@ resource "aws_rds_cluster" "main" {
   storage_encrypted       = true
   kms_key_id              = var.kms_key_arn
   vpc_security_group_ids  = [aws_security_group.main.id]
+  skip_final_snapshot     = true
 
-}
-
-resource "aws_rds_cluster_instance" "main" {
-  count              = var.instance_count
-  identifier         = "${var.component}-${var.env}-instance-${count.index}"
-  cluster_identifier = aws_rds_cluster.main.id
-  instance_class     = var.instance_class
-  engine             = var.engine
-  engine_version     = var.engine_version
 }
 
 
