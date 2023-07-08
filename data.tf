@@ -5,3 +5,8 @@ data "aws_ssm_parameter" "username" {
 data "aws_ssm_parameter" "password" {
   name = "roboshop.${var.env}.mysql.password"
 }
+
+
+
+
+
